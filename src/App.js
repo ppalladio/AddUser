@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import UserList from './components/UserList';
+import AddUser from './components/Users/AddUser';
 
 function App() {
     let init = [{name:'Max', age:'(31 years old)'}];
-    const [users, setUsers] = useState(init)
+    // const [users, setUsers] = useState(init)
     return (
         <div>
-            <UserList />
+            <AddUser />
         </div>
     );
 }
