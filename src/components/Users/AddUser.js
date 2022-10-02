@@ -1,5 +1,6 @@
 import classes from './AddUser.module.css';
 import Card from '../UI/Card';
+import Button from '../UI/Button';
 function AddNewUser(props) {
     function submitHandler(e) {
         e.preventDefault();
@@ -16,7 +17,7 @@ function AddNewUser(props) {
 
                     <label>Age(Years)</label>
                     <input id="age" type="number" min="0" step="1" />
-                    <button type="submit"> Add User</button>
+                    <Button type="submit"> Add User</Button>
                 </div>
             </form>
         </Card>
