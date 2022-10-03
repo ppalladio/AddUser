@@ -1,11 +1,23 @@
+import { useState} from 'react'
 import classes from './AddUser.module.css';
 import Card from '../UI/Card';
 import Button from '../UI/Button';
 function AddNewUser(props) {
+
+    const [enteredUsername, setEnteredUsername] = useState('')
+    const [enteredAge, setEnteredAge] = useState('')
     function submitHandler(e) {
-        e.preventDefault();
-        const username = e.target[0].value;
-        const age = e.target[1].value;
+        
+    }
+
+    const usernameChangeHandler = (e)=>{
+        setEnteredUsername(e.target.value);
+        setEnteredUsername('')
+    }
+
+    const ageChangeHandler = (e)=>{
+        setEnteredAge(e.target.value)
+        setEnteredAge('');
     }
     return (//! props is anything passed from the parent component to the child component
         <Card className={classes.input}>
@@ -13,10 +25,10 @@ function AddNewUser(props) {
             <form onSubmit={submitHandler}>
                 <div>
                     <lable htmlFor="username">Username</lable>
-                    <input id="username" type="text" />
+                    <input id="username" type="text" onChange={usernameChangeHandler}/>
 
-                    <label>Age(Years)</label>
-                    <input id="age" type="number" min="0" step="1" />
+                    <label htmlFor='age'>Age(Years)</label>
+                    <input id="age" type="number" min="0" step="1" onChange={ ageChangeHandler }/>
                     <Button type="submit"> Add User</Button>
                 </div>
             </form>
