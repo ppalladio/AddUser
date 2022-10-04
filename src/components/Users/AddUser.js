@@ -6,15 +6,23 @@ import ErrorModal from '../UI/ErrorModal';
 function AddNewUser(props) {
     const [enteredUsername, setEnteredUsername] = useState('');
     const [enteredAge, setEnteredAge] = useState('');
+    const [error, setError] = useState()
     function submitHandler(e) {
         e.preventDefault();
         if (
             enteredUsername.trim().length === 0 ||
             enteredAge.trim().length === 0
-        ) {
+        ) {setError({
+            title: 'Invalid input',
+            msg:' Please enter a valid name and age.',
+        })
             return;
         }
         if (+enteredAge < 1) {
+            setError({
+                title:'Invalid age',
+                msg: 'Please enter a valid age.',
+            })
             return;
         }
         props.onAddUser(enteredUsername,enteredAge);
@@ -29,10 +37,14 @@ function AddNewUser(props) {
     const ageChangeHandler = (e) => {
         setEnteredAge(e.target.value);
     };
+
+    const errorHandler = ()=>{ //. to close modal window
+        setError(null)
+    }
     return (
         //! props is anything passed from the parent component to the child component
         <div>
-        <ErrorModal title='An error occured' message='something went wrong'/>
+        {error &&<ErrorModal title={error.title} msg={error.msg} onClickDismiss={errorHandler}/>}
         <Card className={classes.input}>
             {/* //.className in card component as props.className*/}
             <form onSubmit={submitHandler}>
