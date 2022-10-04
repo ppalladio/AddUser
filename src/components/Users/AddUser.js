@@ -2,6 +2,7 @@ import { useState } from 'react';
 import classes from './AddUser.module.css';
 import Card from '../UI/Card';
 import Button from '../UI/Button';
+import ErrorModal from '../UI/ErrorModal';
 function AddNewUser(props) {
     const [enteredUsername, setEnteredUsername] = useState('');
     const [enteredAge, setEnteredAge] = useState('');
@@ -30,6 +31,8 @@ function AddNewUser(props) {
     };
     return (
         //! props is anything passed from the parent component to the child component
+        <div>
+        <ErrorModal title='An error occured' message='something went wrong'/>
         <Card className={classes.input}>
             {/* //.className in card component as props.className*/}
             <form onSubmit={submitHandler}>
@@ -55,6 +58,7 @@ function AddNewUser(props) {
                 </div>
             </form>
         </Card>
+        </div>
     );
 }
 export default AddNewUser;
